@@ -1,0 +1,37 @@
+{
+  "": {
+    "dependencies": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/ActivityBar.d",
+    "object": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/ActivityBar.o",
+    "swift-dependencies": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/master.swiftdeps"
+  },
+  "/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/AppDelegate.swift": {
+    "object": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/AppDelegate.swift.o",
+    "swiftmodule": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/AppDelegate~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/AppDelegate.swiftdeps",
+    "diagnostics": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/AppDelegate.dia"
+  },
+  "/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/MonitorView.swift": {
+    "object": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/MonitorView.swift.o",
+    "swiftmodule": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/MonitorView~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/MonitorView.swiftdeps",
+    "diagnostics": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/MonitorView.dia"
+  },
+  "/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/StatsStore.swift": {
+    "object": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/StatsStore.swift.o",
+    "swiftmodule": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/StatsStore~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/StatsStore.swiftdeps",
+    "diagnostics": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/StatsStore.dia"
+  },
+  "/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/SystemMonitor.swift": {
+    "object": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/SystemMonitor.swift.o",
+    "swiftmodule": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/SystemMonitor~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/SystemMonitor.swiftdeps",
+    "diagnostics": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/SystemMonitor.dia"
+  },
+  "/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/main.swift": {
+    "object": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/main.swift.o",
+    "swiftmodule": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/main.swiftdeps",
+    "diagnostics": "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/main.dia"
+  }
+}

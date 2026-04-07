@@ -1,0 +1,66 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "ActivityBar-arm64-apple-macosx26.0-release.exe": ["<ActivityBar-arm64-apple-macosx26.0-release.exe>"]
+  "ActivityBar-arm64-apple-macosx26.0-release.module": ["<ActivityBar-arm64-apple-macosx26.0-release.module>"]
+  "PackageStructure": ["<PackageStructure>"]
+  "main": ["<ActivityBar-arm64-apple-macosx26.0-release.exe>","<ActivityBar-arm64-apple-macosx26.0-release.module>"]
+  "test": ["<ActivityBar-arm64-apple-macosx26.0-release.exe>","<ActivityBar-arm64-apple-macosx26.0-release.module>"]
+default: "main"
+nodes:
+  "/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/AppDelegate.swift","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/MonitorView.swift","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/StatsStore.swift","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/SystemMonitor.swift","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/main.swift"]
+    outputs: ["/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/sources"]
+    description: "Write auxiliary file /Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/sources"
+
+  "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/AppDelegate.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/MonitorView.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/StatsStore.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/SystemMonitor.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/main.swift.o"]
+    outputs: ["/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.product/Objects.LinkFileList"
+
+  "/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
+    outputs: ["/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+
+  "<ActivityBar-arm64-apple-macosx26.0-release.exe>":
+    tool: phony
+    inputs: ["/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar"]
+    outputs: ["<ActivityBar-arm64-apple-macosx26.0-release.exe>"]
+
+  "<ActivityBar-arm64-apple-macosx26.0-release.module>":
+    tool: phony
+    inputs: ["/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/AppDelegate.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/MonitorView.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/StatsStore.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/SystemMonitor.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/main.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/Modules/ActivityBar.swiftmodule"]
+    outputs: ["<ActivityBar-arm64-apple-macosx26.0-release.module>"]
+
+  "C.ActivityBar-arm64-apple-macosx26.0-release.exe":
+    tool: shell
+    inputs: ["/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/AppDelegate.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/MonitorView.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/StatsStore.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/SystemMonitor.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/main.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.product/Objects.LinkFileList"]
+    outputs: ["/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar"]
+    description: "Linking ./.build/arm64-apple-macosx/release/ActivityBar"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release","-o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar","-module-name","ActivityBar","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-dead_strip","-Xlinker","-alias","-Xlinker","_ActivityBar_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.product/Objects.LinkFileList","-Xlinker","-rpath","-Xlinker","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx","-target","arm64-apple-macosx13.0","-plugin-path","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "C.ActivityBar-arm64-apple-macosx26.0-release.module":
+    tool: shell
+    inputs: ["/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/AppDelegate.swift","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/MonitorView.swift","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/StatsStore.swift","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/SystemMonitor.swift","/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/main.swift","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/sources"]
+    outputs: ["/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/AppDelegate.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/MonitorView.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/StatsStore.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/SystemMonitor.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/main.swift.o","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/Modules/ActivityBar.swiftmodule"]
+    description: "Compiling Swift Module 'ActivityBar' (5 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","ActivityBar","-emit-dependencies","-emit-module","-emit-module-path","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/Modules/ActivityBar.swiftmodule","-output-file-map","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/output-file-map.json","-whole-module-optimization","-num-threads","14","-c","@/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ActivityBar.build/sources","-I","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/Modules","-target","arm64-apple-macosx13.0","-whole-module-optimization","-num-threads","14","-serialize-diagnostics","-O","-j14","-DSWIFT_PACKAGE","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Users/johnkentreynes/Projects/personal/activitybar/.build/arm64-apple-macosx/release/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","ActivityBar_main","-swift-version","5","-plugin-path","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","activitybar"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/johnkentreynes/Projects/personal/activitybar/Sources/ActivityBar/","/Users/johnkentreynes/Projects/personal/activitybar/Package.swift","/Users/johnkentreynes/Projects/personal/activitybar/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+
