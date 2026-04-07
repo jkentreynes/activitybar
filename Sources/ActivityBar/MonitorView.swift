@@ -161,6 +161,9 @@ private let colKind: CGFloat = 68
 private let colPID:  CGFloat = 64
 private let colUser: CGFloat = 90
 
+private let darkBg   = Color(red: 0.10, green: 0.10, blue: 0.11)
+private let darkCard = Color(red: 0.16, green: 0.16, blue: 0.17)
+
 private struct CPUDetail: View {
     @EnvironmentObject var store: StatsStore
 
@@ -193,14 +196,16 @@ private struct CPUDetail: View {
             Divider()
 
             // Process table
-            ProcessTable(processes: store.allProcesses)
+            ProcessTable(processes: store.allProcesses, color: Color(nsColor: .systemBlue))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(darkBg)
     }
 }
 
 private struct ProcessTable: View {
     let processes: [SystemMonitor.ProcInfo]
+    let color: Color
 
     var body: some View {
         VStack(spacing: 0) {
@@ -219,9 +224,7 @@ private struct ProcessTable: View {
             }
             .font(.system(size: 10, weight: .semibold))
             .foregroundColor(.secondary)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 6)
-            .background(Color(NSColor.controlBackgroundColor))
+            .padding(14)
 
             Divider()
 
@@ -234,6 +237,7 @@ private struct ProcessTable: View {
                 }
             }
             .padding(.bottom, 12)
+            .background(darkCard)
         }
     }
 }
@@ -270,8 +274,7 @@ private struct ProcessRow: View {
                 .foregroundColor(.secondary)
         }
         .font(.system(size: 11).monospacedDigit())
-        .padding(.horizontal, 14)
-        .padding(.vertical, 4)
+        .padding(14)
         .background(hovered ? Color(NSColor.selectedContentBackgroundColor).opacity(0.15) : Color.clear)
         .onHover { hovered = $0 }
     }
@@ -316,14 +319,16 @@ private struct MemoryDetail: View {
             Divider()
 
             // Process table
-            MemoryProcessTable(processes: byMemory)
+            MemoryProcessTable(processes: byMemory, color: Color(nsColor: .systemPurple))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(darkBg)
     }
 }
 
 private struct MemoryProcessTable: View {
     let processes: [SystemMonitor.ProcInfo]
+    let color: Color
 
     var body: some View {
         VStack(spacing: 0) {
@@ -342,9 +347,7 @@ private struct MemoryProcessTable: View {
             }
             .font(.system(size: 10, weight: .semibold))
             .foregroundColor(.secondary)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 6)
-            .background(Color(NSColor.controlBackgroundColor))
+            .padding(14)
 
             Divider()
 
@@ -357,6 +360,7 @@ private struct MemoryProcessTable: View {
                 }
             }
             .padding(.bottom, 12)
+            .background(darkCard)
         }
     }
 }
@@ -389,8 +393,7 @@ private struct MemoryProcessRow: View {
                 .foregroundColor(.secondary)
         }
         .font(.system(size: 11).monospacedDigit())
-        .padding(.horizontal, 14)
-        .padding(.vertical, 4)
+        .padding(14)
         .background(hovered ? Color(NSColor.selectedContentBackgroundColor).opacity(0.15) : Color.clear)
         .onHover { hovered = $0 }
     }
@@ -432,14 +435,16 @@ private struct DiskDetail: View {
 
             Divider()
 
-            DiskProcessTable(processes: byDiskRead)
+            DiskProcessTable(processes: byDiskRead, color: Color(nsColor: .systemGreen))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(darkBg)
     }
 }
 
 private struct DiskProcessTable: View {
     let processes: [SystemMonitor.ProcInfo]
+    let color: Color
 
     var body: some View {
         VStack(spacing: 0) {
@@ -457,9 +462,7 @@ private struct DiskProcessTable: View {
             }
             .font(.system(size: 10, weight: .semibold))
             .foregroundColor(.secondary)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 6)
-            .background(Color(NSColor.controlBackgroundColor))
+            .padding(14)
 
             Divider()
 
@@ -472,6 +475,7 @@ private struct DiskProcessTable: View {
                 }
             }
             .padding(.bottom, 12)
+            .background(darkCard)
         }
     }
 }
@@ -498,8 +502,7 @@ private struct DiskProcessRow: View {
                 .foregroundColor(.secondary)
         }
         .font(.system(size: 11).monospacedDigit())
-        .padding(.horizontal, 14)
-        .padding(.vertical, 4)
+        .padding(14)
         .background(hovered ? Color(NSColor.selectedContentBackgroundColor).opacity(0.15) : Color.clear)
         .onHover { hovered = $0 }
     }
@@ -530,9 +533,10 @@ private struct NetworkDetail: View {
 
             Divider()
 
-            NetworkProcessTable(processes: store.allProcesses)
+            NetworkProcessTable(processes: store.allProcesses, color: Color(nsColor: .systemOrange))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .background(darkBg)
     }
 }
 
@@ -554,14 +558,15 @@ private struct NetworkCard: View {
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 12)
-        .background(Color(NSColor.controlBackgroundColor))
+        .padding(12)
+        .background(darkCard)
         .cornerRadius(10)
     }
 }
 
 private struct NetworkProcessTable: View {
     let processes: [SystemMonitor.ProcInfo]
+    let color: Color
 
     private var byConnections: [SystemMonitor.ProcInfo] {
         processes.sorted { $0.connections > $1.connections }
@@ -581,9 +586,7 @@ private struct NetworkProcessTable: View {
             }
             .font(.system(size: 10, weight: .semibold))
             .foregroundColor(.secondary)
-            .padding(.horizontal, 14)
-            .padding(.vertical, 6)
-            .background(Color(NSColor.controlBackgroundColor))
+            .padding(14)
 
             Divider()
 
@@ -596,6 +599,7 @@ private struct NetworkProcessTable: View {
                 }
             }
             .padding(.bottom, 12)
+            .background(darkCard)
         }
     }
 }
@@ -620,8 +624,7 @@ private struct NetworkProcessRow: View {
                 .foregroundColor(.secondary)
         }
         .font(.system(size: 11).monospacedDigit())
-        .padding(.horizontal, 14)
-        .padding(.vertical, 4)
+        .padding(14)
         .background(hovered ? Color(NSColor.selectedContentBackgroundColor).opacity(0.15) : Color.clear)
         .onHover { hovered = $0 }
     }
@@ -714,7 +717,7 @@ private struct StatCard: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(10)
-        .background(Color(NSColor.controlBackgroundColor))
+        .background(darkCard)
         .cornerRadius(8)
     }
 }
