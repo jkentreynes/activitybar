@@ -42,7 +42,6 @@ struct MonitorView: View {
             Divider()
             detail
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(NSColor.windowBackgroundColor))
         }
         .frame(width: 700, height: 460)
     }
@@ -234,6 +233,7 @@ private struct ProcessTable: View {
                     }
                 }
             }
+            .padding(.bottom, 12)
         }
     }
 }
@@ -356,6 +356,7 @@ private struct MemoryProcessTable: View {
                     }
                 }
             }
+            .padding(.bottom, 12)
         }
     }
 }
@@ -470,6 +471,7 @@ private struct DiskProcessTable: View {
                     }
                 }
             }
+            .padding(.bottom, 12)
         }
     }
 }
@@ -593,6 +595,7 @@ private struct NetworkProcessTable: View {
                     }
                 }
             }
+            .padding(.bottom, 12)
         }
     }
 }

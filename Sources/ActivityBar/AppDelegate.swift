@@ -96,11 +96,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Icon
 
     private func makeBarIcon(cpu: Double, mem: Double, disk: Double, net: Double) -> NSImage {
-        let barW: CGFloat = 5
+        let barW: CGFloat = 4
         let gap: CGFloat  = 2
-        let maxH: CGFloat = 14
+        let maxH: CGFloat = 12
         let imgW: CGFloat = barW * 4 + gap * 3 + 4
-        let imgH: CGFloat = 18
+        let imgH: CGFloat = 16
 
         let image = NSImage(size: NSSize(width: imgW, height: imgH))
         image.lockFocus()
