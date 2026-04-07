@@ -274,7 +274,7 @@ private struct ProcessRow: View {
                 .foregroundColor(.secondary)
         }
         .font(.system(size: 11).monospacedDigit())
-        .padding(14)
+        .padding(6)
         .background(hovered ? Color(NSColor.selectedContentBackgroundColor).opacity(0.15) : Color.clear)
         .onHover { hovered = $0 }
     }
@@ -393,7 +393,7 @@ private struct MemoryProcessRow: View {
                 .foregroundColor(.secondary)
         }
         .font(.system(size: 11).monospacedDigit())
-        .padding(14)
+        .padding(6)
         .background(hovered ? Color(NSColor.selectedContentBackgroundColor).opacity(0.15) : Color.clear)
         .onHover { hovered = $0 }
     }
@@ -502,7 +502,7 @@ private struct DiskProcessRow: View {
                 .foregroundColor(.secondary)
         }
         .font(.system(size: 11).monospacedDigit())
-        .padding(14)
+        .padding(6)
         .background(hovered ? Color(NSColor.selectedContentBackgroundColor).opacity(0.15) : Color.clear)
         .onHover { hovered = $0 }
     }
@@ -624,7 +624,7 @@ private struct NetworkProcessRow: View {
                 .foregroundColor(.secondary)
         }
         .font(.system(size: 11).monospacedDigit())
-        .padding(14)
+        .padding(6)
         .background(hovered ? Color(NSColor.selectedContentBackgroundColor).opacity(0.15) : Color.clear)
         .onHover { hovered = $0 }
     }
