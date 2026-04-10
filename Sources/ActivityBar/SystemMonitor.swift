@@ -37,8 +37,8 @@ class SystemMonitor {
     private var lastNetSample = Date()
 
     // Per-process CPU tracking
-    private var prevProcTimes: [Int32: UInt64] = [:]  // pid -> total ns
-    private var prevProcSampleDate = Date()
+    private var prevProcTimes: [Int32: UInt64] = [:]  // pid -> Mach ticks (pti_total_user + pti_total_system)
+    private var prevProcSampleTicks: UInt64 = mach_absolute_time()
     private var userCache: [uid_t: String] = [:]
 
     // Number of logical CPUs (for normalising CPU%)
@@ -226,9 +226,9 @@ class SystemMonitor {
         var procList = [kinfo_proc](repeating: kinfo_proc(), count: count)
         sysctl(&mib, 4, &procList, &size, nil, 0)
 
-        let now = Date()
-        let elapsedNs = now.timeIntervalSince(prevProcSampleDate) * 1_000_000_000
-        prevProcSampleDate = now
+        let now = mach_absolute_time()
+        let elapsedTicks = now > prevProcSampleTicks ? now - prevProcSampleTicks : 1
+        prevProcSampleTicks = now
 
         var newTimes: [Int32: UInt64] = [:]
         var procs: [ProcInfo] = []
@@ -252,10 +252,10 @@ class SystemMonitor {
 
             // Real-time CPU%: delta ns / elapsed ns / logical CPUs * 100
             let cpuPercent: Double
-            if let prev = prevProcTimes[pid], elapsedNs > 0 {
+            if let prev = prevProcTimes[pid], elapsedTicks > 0 {
                 let delta = totalNs >= prev ? totalNs - prev : 0
-                cpuPercent = min(100 * logicalCPUCount,
-                                 Double(delta) / elapsedNs / logicalCPUCount * 100)
+                cpuPercent = min(logicalCPUCount * 100,
+                                 Double(delta) / Double(elapsedTicks) * 100)
             } else {
                 cpuPercent = 0
             }
@@ -269,16 +269,19 @@ class SystemMonitor {
             let user = cachedUser(uid: uid)
 
             // Disk I/O: cumulative bytes read/written since process start
+            // proc_pid_rusage does copyout() directly to the address passed as `buffer`,
+            // so we pass the address of the output struct cast to the expected pointer type.
             var diskRead: UInt64 = 0
             var diskWritten: UInt64 = 0
-            var rusage = rusage_info_v4()
-            let rusageOk = withUnsafeMutablePointer(to: &rusage) { ptr -> Int32 in
-                var info: rusage_info_t? = UnsafeMutableRawPointer(ptr)
-                return proc_pid_rusage(pid, RUSAGE_INFO_V4, &info)
+            var rusageInfo = rusage_info_v4()
+            let diskOk: Int32 = withUnsafeMutablePointer(to: &rusageInfo) { ptr in
+                UnsafeMutableRawPointer(ptr).withMemoryRebound(
+                    to: rusage_info_t?.self, capacity: 1
+                ) { proc_pid_rusage(pid, RUSAGE_INFO_V4, $0) }
             }
-            if rusageOk == 0 {
-                diskRead    = rusage.ri_diskio_bytesread
-                diskWritten = rusage.ri_diskio_byteswritten
+            if diskOk == 0 {
+                diskRead    = rusageInfo.ri_diskio_bytesread
+                diskWritten = rusageInfo.ri_diskio_byteswritten
             }
 
             procs.append(ProcInfo(
